@@ -1,0 +1,34 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     var val: Int
+ *     var next: ListNode?
+ *     init(_ val: Int) {
+ *         self.val = val
+ *         self.next = nil
+ *     }
+ * }
+ */
+
+class Solution {
+    func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+        var l1: ListNode? = list1
+        var l2: ListNode? = list2
+
+        var dummy: ListNode? = ListNode(0)
+        var node = dummy
+        while l1?.val != nil && l2?.val != nil {
+            if l1!.val < l2!.val {
+                node?.next = l1
+                l1 = l1?.next
+            } else {
+                node?.next = l2
+                l2 = l2?.next
+            }
+            node = node?.next
+        }
+
+        node?.next = l1 ?? l2
+        return dummy?.next
+    }
+}
